@@ -1,28 +1,30 @@
 package com.example.demo.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor; 
+import lombok.AllArgsConstructor;
 
-@Entity
+@Entity(name = "productos") 
 @Data
+@NoArgsConstructor 
+@AllArgsConstructor
 public class ProductoEntity {
 
     @Id
-    @Column(name = "id_producto")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
-    @Column(name = "nombre_producto")
-    private String nombrepro;
+    @Column(name = "nombre") 
+    private String nombre;
 
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "categoria_producto")
+    @Column(name = "categoria") 
     private String categoria;
 
-    @Column(name = "imagen")
+    @Column(name = "imagen_url") 
     private String imagen;
 
     @Column(name = "precio")

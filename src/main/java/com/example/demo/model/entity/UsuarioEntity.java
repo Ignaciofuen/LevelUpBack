@@ -1,21 +1,26 @@
 package com.example.demo.model.entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.Data;
 
-@Entity
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "usuarios") 
 @Data
 public class UsuarioEntity {
+    
     @Id
-    @Column(name = "id_usuario")
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long idusu;
-    @Column(name = "email")
+
+    @Column(name = "email", unique = true) 
     private String email;
-    @Column(name = "email")
-    private String contraseña;
+
+    @Column(name = "password") 
+    private String password;
+
     @Column(name = "rol")
     private String rol;
-    
-
 }
