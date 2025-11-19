@@ -4,7 +4,7 @@ import com.example.demo.model.Usuario;
 import com.example.demo.model.entity.UsuarioEntity;
 import com.example.demo.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder; 
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,19 +26,18 @@ public class UsuarioService {
             throw new RuntimeException("Error: El email ya está registrado");
         }
         
-      
         UsuarioEntity nuevaEntidad = convertirA_Entidad(usuarioDto);
         UsuarioEntity entidadGuardada = usuarioRepository.save(nuevaEntidad);
         
         return convertirA_DTO(entidadGuardada);
     }
 
-  
+ 
     public Usuario loginUsuario(String email, String password) {
         UsuarioEntity entidad = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Error: Email no registrado"));
 
-        
+       
         if (!passwordEncoder.matches(password, entidad.getPassword())) {
             throw new RuntimeException("Error: Contraseña incorrecta");
         }
