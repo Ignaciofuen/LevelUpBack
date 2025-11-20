@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Usuario; // Tu DTO
+import com.example.demo.model.Usuario; 
 import com.example.demo.model.entity.UsuarioEntity;
 import com.example.demo.repository.UsuarioRepository;
 import com.example.demo.security.JwtUtil;
@@ -13,6 +13,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping; 
+    import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -94,6 +96,7 @@ public class UsuarioController {
     // --- 4. ELIMINAR USUARIO ---
     @DeleteMapping("/usuarios/{id}")
     public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
+        
         if (usuarioRepository.existsById(id)) {
             usuarioRepository.deleteById(id);
             return ResponseEntity.noContent().build(); 
