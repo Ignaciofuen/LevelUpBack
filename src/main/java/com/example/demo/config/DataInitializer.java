@@ -16,7 +16,7 @@ import java.util.Optional;
 public class DataInitializer {
 
     
-    private final String BASE_IMAGE_URL = "http://localhost:8080/images/";
+    private final String BASE_IMAGE_URL = "http://34.236.147.104:8080/images/";
 
     @Bean
     CommandLineRunner initDatabase(ProductoRepository productoRepo, 
