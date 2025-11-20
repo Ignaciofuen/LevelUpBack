@@ -30,7 +30,7 @@ public class DataInitializer {
             if (usuarioRepo.findByEmail("usuario@admin.cl").isEmpty()) {
                 UsuarioEntity admin = new UsuarioEntity();
                 admin.setEmail("usuario@admin.cl");
-                admin.setPassword(passwordEncoder.encode("admin999"));
+                admin.setContraseña(passwordEncoder.encode("admin999"));
                 admin.setRol("ADMIN");
                 usuarioRepo.save(admin);
                 System.out.println("Usuario ADMIN creado.");

@@ -15,11 +15,11 @@ public class UsuarioEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long idusu;
 
-    @Column(name = "email", unique = true) 
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password") 
-    private String password;
+    private String contraseña;
 
     @Column(name = "rol")
     private String rol;
