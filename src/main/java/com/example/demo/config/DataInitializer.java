@@ -16,7 +16,7 @@ import java.util.Optional;
 public class DataInitializer {
 
     
-    private final String BASE_IMAGE_URL = "http://34.236.147.104:8080/images/";
+    private final String BASE_IMAGE_URL = "http://98.90.253.99:8080/images/";
 
     @Bean
     CommandLineRunner initDatabase(ProductoRepository productoRepo, 
@@ -30,7 +30,7 @@ public class DataInitializer {
             if (usuarioRepo.findByEmail("usuario@admin.cl").isEmpty()) {
                 UsuarioEntity admin = new UsuarioEntity();
                 admin.setEmail("usuario@admin.cl");
-                admin.setContraseña(passwordEncoder.encode("admin999"));
+                admin.setPassword(passwordEncoder.encode("admin999"));
                 admin.setRol("ADMIN");
                 usuarioRepo.save(admin);
                 System.out.println("Usuario ADMIN creado.");
