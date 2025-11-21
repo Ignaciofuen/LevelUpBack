@@ -38,7 +38,7 @@ public class UsuarioService {
                 .orElseThrow(() -> new RuntimeException("Error: Email no registrado"));
 
        
-        if (!passwordEncoder.matches(password, entidad.getContraseña())) {
+        if (!passwordEncoder.matches(password, entidad.getPassword())) {
             throw new RuntimeException("Error: Contraseña incorrecta");
         }
         

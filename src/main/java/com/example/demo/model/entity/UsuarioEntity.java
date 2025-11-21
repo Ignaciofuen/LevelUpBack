@@ -19,7 +19,7 @@ public class UsuarioEntity {
     private String email;
 
     @Column(name = "password") 
-    private String contraseña;
+    private String password;
 
     @Column(name = "rol")
     private String rol;
