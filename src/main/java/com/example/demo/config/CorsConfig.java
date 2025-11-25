@@ -9,15 +9,15 @@ public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") 
+        registry.addMapping("/**")
                 .allowedOrigins(
-                    
-                        "http://localhost:5173", 
-                        "http://localhost:3000", 
-                        "http://localhost:5174"  
+                        "http://localhost:5173",
+                        "http://localhost:3000",
+                        "http://localhost:5174",
+                        "http://level-up-gamer-react.s3-website-us-east-1.amazonaws.com"
                 )
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") 
-                .allowedHeaders("*") 
-                .allowCredentials(true); 
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }

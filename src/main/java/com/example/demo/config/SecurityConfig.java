@@ -1,7 +1,6 @@
 package com.example.demo.config;
 
 import com.example.demo.security.JwtAuthFilter;
-import com.example.demo.security.JwtUtil;
 import com.example.demo.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,23 +24,25 @@ public class SecurityConfig {
 
     @Autowired
     private JwtAuthFilter authFilter;
-    
+
     @Autowired
-    private CustomUserDetailsService userDetailsService; 
+    private CustomUserDetailsService userDetailsService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable()) // Deshabilitar CSRF para APIs
-                .cors(cors -> cors.configure(http)) 
+                .cors(cors -> {}) // <-- Usa la configuración definida en CorsConfig
                 .authorizeHttpRequests(auth -> auth
-                        // Rutas Públicas (Login, Registro, Imágenes, Swagger)
-                        .requestMatchers("/api/auth/**", "/images/**", "/v3/api-docs/**", "/swagger-ui/**", "/favicon.ico").permitAll()
-                       
+
+                        // Rutas públicas
+                        .requestMatchers("/api/auth/**", "/images/**",
+                                "/v3/api-docs/**", "/swagger-ui/**", "/favicon.ico").permitAll()
+
                         // Permitir ver productos a cualquiera
-                        .requestMatchers(HttpMethod.GET, "/api/productos/**").permitAll() 
-                        
-                      
+                        .requestMatchers(HttpMethod.GET, "/api/productos/**").permitAll()
+
+                        // Todo lo demás requiere autenticación
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -52,7 +53,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Para encriptar contraseñas
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
